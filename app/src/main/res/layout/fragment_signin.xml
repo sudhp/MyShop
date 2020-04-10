@@ -18,12 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="70dp"
             android:layout_marginRight="16dp"
             android:background="@color/btnRed"
+            android:foreground="?attr/selectableItemBackground"
             android:text="Sign In"
             android:textColor="@color/colorAccent"
-            android:foreground="?attr/selectableItemBackground"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +40,7 @@
             android:ems="10"
             android:hint="Email Id"
             android:inputType="textEmailAddress"
+            android:textColor="@color/colorAccent"
             android:textColorHint="#70ffffff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +57,7 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
+            android:textColor="@color/colorAccent"
             android:textColorHint="#70FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,8 +70,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:background="@color/colorPrimaryDark"
-            android:src="@mipmap/close_button"
             android:scaleType="fitCenter"
+            android:src="@mipmap/close_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,6 +85,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/singin_progressBar"
+            style="?android:attr/progressBarStyle"
+            android:visibility="invisible"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/sign_up_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_password" />
 
         <TextView
             android:id="@+id/sign_in_forgot_password"
