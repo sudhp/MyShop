@@ -248,6 +248,7 @@ public class SignupFragment extends Fragment {
                         });
             }else{
                 //confirmPassword.setError("Password doesn't matched",customErrorIcon);
+
                 confirmPassword.setError("Password doesn't matched");
             }
         }else{
