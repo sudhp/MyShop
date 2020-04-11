@@ -14,7 +14,7 @@
 
 
         <Button
-            android:id="@+id/sign_up_button"
+            android:id="@+id/sign_in_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -23,14 +23,15 @@
             android:background="@color/btnRed"
             android:foreground="?attr/selectableItemBackground"
             android:text="Sign In"
-            android:textColor="@color/colorAccent"
+            android:enabled="false"
+            android:textColor="#50ffffff"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sign_in_forgot_password" />
 
         <EditText
-            android:id="@+id/sign_up_email"
+            android:id="@+id/sign_in_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -47,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <EditText
-            android:id="@+id/sign_up_password"
+            android:id="@+id/sign_in_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
@@ -61,7 +62,7 @@
             android:textColorHint="#70FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_email" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_email" />
 
         <ImageButton
             android:id="@+id/sign_in_close_btn"
@@ -87,15 +88,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
-            android:id="@+id/singin_progressBar"
+            android:id="@+id/sing_in_progressBar"
             style="?android:attr/progressBarStyle"
             android:visibility="invisible"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/sign_up_button"
+            app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_password" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_password" />
 
         <TextView
             android:id="@+id/sign_in_forgot_password"
@@ -106,7 +107,7 @@
             android:text="Forgot Password"
             android:textColor="@color/colorAccent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_password" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_password" />
 
         <TextView
             android:id="@+id/textView3"
@@ -119,7 +120,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_button" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
 
         <TextView
             android:id="@+id/tv_dont_hav_account"
@@ -142,8 +143,8 @@
             android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/tv_dont_hav_account"
             app:layout_constraintEnd_toStartOf="@+id/textView3"
-            app:layout_constraintStart_toStartOf="@+id/sign_up_button"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_button" />
+            app:layout_constraintStart_toStartOf="@+id/sign_in_button"
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
 
         <View
             android:id="@+id/divider2"
@@ -151,9 +152,9 @@
             android:layout_height="1dp"
             android:background="@color/colorAccent"
             app:layout_constraintBottom_toTopOf="@+id/tv_dont_hav_account"
-            app:layout_constraintEnd_toEndOf="@+id/sign_up_button"
+            app:layout_constraintEnd_toEndOf="@+id/sign_in_button"
             app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_button" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

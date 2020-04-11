@@ -75,6 +75,7 @@ public class SignupFragment extends Fragment {
         closeButton = view.findViewById(R.id.sign_up_close_btn);
         signUpBtn = view.findViewById(R.id.sign_up_button);
         progressBar = view.findViewById(R.id.sign_up_progressBar);
+        closeButton = view.findViewById(R.id.sign_up_close_btn);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -168,6 +169,15 @@ public class SignupFragment extends Fragment {
                 checkEmailAndPassword();
             }
         });
+        //Close Image Button
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainIntent();
+            }
+        });
+
+
     }
 
     private void setFragment(Fragment fragment) {
@@ -225,9 +235,7 @@ public class SignupFragment extends Fragment {
                                                 @Override
                                                 public void onComplete(@NonNull Task<DocumentReference> task) {
                                                     if(task.isSuccessful()){
-                                                        Intent mainIntent = new Intent(getActivity(),Main2Activity.class);
-                                                        startActivity(mainIntent);
-                                                        getActivity().finish();
+                                                        mainIntent();
                                                     }else{
                                                         signUpBtn.setEnabled(true);
                                                         signUpBtn.setTextColor(Color.rgb(255,255,255));
@@ -248,11 +256,16 @@ public class SignupFragment extends Fragment {
                         });
             }else{
                 //confirmPassword.setError("Password doesn't matched",customErrorIcon);
-
                 confirmPassword.setError("Password doesn't matched");
             }
         }else{
             email.setError("Invalid Email!");
         }
+    }
+
+    private void mainIntent(){
+        Intent mainIntent = new Intent(getActivity(), Main2Activity.class);
+        startActivity(mainIntent);
+        getActivity().finish();
     }
 }
