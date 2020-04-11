@@ -3,6 +3,7 @@ package com.examp.myshop;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -50,7 +56,7 @@ public class SignupFragment extends Fragment {
     private ProgressBar progressBar;
 
     private FirebaseAuth firebaseAuth;
-
+    private FirebaseFirestore firebaseFirestore;
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+.[a-z]+";
 
 
@@ -71,6 +77,7 @@ public class SignupFragment extends Fragment {
         progressBar = view.findViewById(R.id.sign_up_progressBar);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
         return view;
     }
 
@@ -193,6 +200,10 @@ public class SignupFragment extends Fragment {
     }
 
     private void checkEmailAndPassword(){
+
+        //Drawable customErrorIcon = getResources().getDrawable(R.mipmap.error_icon);
+        //customErrorIcon.setBounds(0,0,customErrorIcon.getIntrinsicWidth(), customErrorIcon.getIntrinsicHeight());
+
         if(email.getText().toString().matches(emailPattern)){
             if(password.getText().toString().equals(confirmPassword.getText().toString())){
 
@@ -205,19 +216,38 @@ public class SignupFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-                                    Intent mainIntent = new Intent(getActivity(),Main2Activity.class);
-                                    startActivity(mainIntent);
-                                    getActivity().finish();
+
+                                    Map<Object,String> userdata = new HashMap<>();
+
+                                    userdata.put("fullname", fullName.getText().toString());
+                                    firebaseFirestore.collection("USERS").add(userdata)
+                                            .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<DocumentReference> task) {
+                                                    if(task.isSuccessful()){
+                                                        Intent mainIntent = new Intent(getActivity(),Main2Activity.class);
+                                                        startActivity(mainIntent);
+                                                        getActivity().finish();
+                                                    }else{
+                                                        signUpBtn.setEnabled(true);
+                                                        signUpBtn.setTextColor(Color.rgb(255,255,255));
+                                                        progressBar.setVisibility(View.INVISIBLE);
+                                                        String error = task.getException().getMessage();
+                                                        Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
                                 }else{
                                     signUpBtn.setEnabled(true);
                                     signUpBtn.setTextColor(Color.rgb(255,255,255));
-                                    progressBar.setVisibility(View.VISIBLE);
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     String error = task.getException().getMessage();
                                     Toast.makeText(getActivity(), error, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
             }else{
+                //confirmPassword.setError("Password doesn't matched",customErrorIcon);
                 confirmPassword.setError("Password doesn't matched");
             }
         }else{
